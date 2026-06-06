@@ -1,101 +1,130 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-<title>Page Title</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-* {
-  box-sizing: border-box;
-}
-
-.container {
-  display: grid;
-  grid-template-columns: repeat(12, [col-start] 1fr);
-  gap: 20px;
-}
-
-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-/* Mobile first */
-.container > * {
-  border: 1px solid green;
-  background-color: beige;
-  padding: 10px;
-  grid-column: col-start / span 12;
-}
-
-@media (min-width: 576px) {
-  .sidebar {
-    grid-column: col-start / span 3;
-    grid-row: 3;
-  }
-  .ads {
-    grid-column: col-start / span 3;
-  }
-  .content, .footer {
-    grid-column: col-start 4 / span 9;
-  }
-  nav ul {
-    display: flex;
-    justify-content: space-between;
-  }
-}
-
-@media (min-width: 768px) {
-  .nav {
-    grid-column: col-start / span 2;
-    grid-row: 2 / 4;
-  }
-  .content {
-    grid-column: col-start 3 / span 8;
-    grid-row: 2 / 4;
-  }
-  .sidebar {
-    grid-column: col-start 11 / span 2;
-  }
-  .ads {
-    grid-column: col-start 11 / span 2;
-  }
-  .footer {
-    grid-column: col-start / span 12;
-  }
-  nav ul {
-    flex-direction: column;
-  }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallpaper</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="app"> 
+    <div class="panel">
+      <!-- 타이틀, 헤더 -->
+      <!--  
+      <div class="title">
+        <p class="subtitle">WEB PROJECT</p>
+        <h2>배경화면을 만들어보세요!</h2>
+      </div>
+      -->
 
-<div class="container">
-  <header class="head">Header/Company Logo</header>
-  <nav class="nav">
-    <ul>
-      <li><a href="#">Link 1</a></li>
-      <li><a href="#">Link 2</a></li>
-      <li><a href="#">Link 3</a></li>
-    </ul>
-  </nav>
-  <div class="content">
-    <h1>주요 내용</h1>
-    <img src="image/CWU.png">
-    <br>
-    <p>Here we display the sections in source order for screens less than 576 pixels wide.</p>
-    <p>Then, we go to a two column layout for screens between 576 and 767 pixels wide.</p>
-    <p>Then, we go to a three column layout for screens over 767 pixels wide.</p>
-    <p>Resize the browser window to see the responsive effect.</p>
+      <section class="button-grid">
+        <button class="None">추가 기능</button>
+        <button type="button" id="randomUnlocked">고정 제외 랜덤</button>
+        <button type="button" id="copyCode">코드 복사</button>
+        <button type="button" id="applyCode">코드 적용</button>
+      </section>
+
+      <section class="control">
+        <label for="shareCode">Code</label>
+        <textarea id="shareCode" rows="1" spellcheck="false" placeholder="복사한 코드를 입력하세요"></textarea>
+      </section>
+
+      <section class="control">
+        <label for="textInput">텍스트</label>
+        <textarea id="textInput">MAKE YOUR WALLPAPER</textarea>
+      </section>
+
+      <section class="control">
+        <div title="폰트의 스타일을 결정합니다.">
+          <label for="fontSelect">폰트
+            <input type="checkbox" id="lockFont">잠금
+          </label>
+          <label class="lock"></label>
+        </div>
+        
+        <select id="fontSelect">
+          <option value="Arial, sans-serif">Arial</option>
+          <option value="'Times New Roman', serif">Times New Roman</option>
+          <option value="'Courier New', monospace">Courier New</option>
+          <option value="Impact, sans-serif">Impact</option>
+          <option value="Georgia, serif">Georgia</option>
+          <option value="'Trebuchet MS', sans-serif">Trebuchet MS</option>
+          <option value="'Malgun Gothic', sans-serif">맑은 고딕</option>
+        </select>
+      </section>
+
+      <!-- 폰트 크기 설정 -->
+      <section class="control">
+        <div title="폰트의 크기를 결정합니다.">
+          <label for="fontSize">크기</label>
+          <label class="lock">
+            <input type="checkbox" id="lockSize">잠금
+          </label>
+        </div>
+        <input type="range" id="fontSize" min="30" max="210" value="120">
+        <output id="fontSizeValue">120px</output>
+      </section>
+
+      <section class="control">
+        <div title="텍스트의 컬러를 결정합니다."> 
+          <label for="fontColor">색</label>
+          <label class="lock">
+            <input type="checkbox" id="lockColor">잠금
+          </label>
+        </div>
+        <input type="color" id="fontColor" value="#f7f0df">
+      </section>
+
+      <section class="control">
+        <div title="배경의 색상을 결정합니다.">
+          <label for="bgColor">배경색</label>
+          <label class="lock">
+            <input type="checkbox" id="lockBg">잠금
+          </label>
+        </div>
+        <input type="color" id="bgColor" value="#181818">
+      </section>
+
+      <section class="control">
+        <div title="텍스트의 위치를 결정합니다.">
+          <label>위치</label>
+          <label class="lock">
+            <input type="checkbox" id="lockPos">잠금
+          </label>
+        </div>
+        <div class="split">
+          <label for="posX">X <input type="range" id="posX" min="0" max="100" value="50"></label>
+          <label for="posY">Y <input type="range" id="posY" min="0" max="100" value="50"></label>
+        </div>
+      </section>
+
+      <!-- 레이아웃 설정 -->
+      <section class="control">
+        <label for="layoutSelect">레이아웃</label>
+        <select id="layoutSelect">
+          <option value="center">중앙 정렬</option>
+          <option value="leftTop">왼쪽 상단</option>
+          <option value="rightBottom">오른쪽 하단</option>
+          <option value="vertical">세로 타이포</option>
+          <option value="repeat">반복 패턴</option>
+        </select>
+      </section>
+    </div>
+
+    <!-- 배경 미리보기 -->
+    <section class="workspace">
+      <div class="toolbar">
+        <button type="button" id="download">PNG 저장</button>
+        <strong>1920 x 1080</strong>
+      </div>
+
+      <div class="preview">
+        <div class="wallpaper" id="wallpaper">
+          <div class="wallpaper-text" id="wallpaperText">MAKE YOUR WALLPAPER</div>
+        </div>
+      </div>
+    </section>
   </div>
-  <div class="sidebar">Sidebar</div>
-  <div class="ads">Ads</div>
-  <footer class="footer">The footer</footer>
-</div>
-
 </body>
+<script src="script.js"></script>
 </html>
-
-
